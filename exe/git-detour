@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/git_detour"
+
+begin
+  GitDetour::CLI.start(ARGV)
+rescue GitDetour::GitWrapper::GitError => e
+  puts "Error: #{e.message}"
+  exit 1
+rescue Interrupt
+  puts "\nCancelled"
+  exit 130
+end
